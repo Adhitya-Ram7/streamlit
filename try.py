@@ -1,15 +1,3 @@
-import os
-import subprocess
-
-# Install packages if not already installed
-packages = ['transformers', 'torch', 'peft', 'fpdf']
-for package in packages:
-    try:
-        __import__(package.split('==')[0])  # Check if package is already installed
-    except ImportError:
-        print(f"Installing {package}...")
-        subprocess.check_call([os.sys.executable, "-m", "pip", "install", package])
-
 # Import required packages
 import streamlit as st
 from transformers import AutoTokenizer
