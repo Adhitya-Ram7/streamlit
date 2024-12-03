@@ -1,3 +1,16 @@
+import os
+import subprocess
+
+# Install packages if not already installed
+packages = ['transformers', 'torch', 'peft', 'fpdf']
+for package in packages:
+    try:
+        __import__(package.split('==')[0])  # Check if package is already installed
+    except ImportError:
+        print(f"Installing {package}...")
+        subprocess.check_call([os.sys.executable, "-m", "pip", "install", package])
+
+# Import required packages
 import streamlit as st
 from transformers import AutoTokenizer
 import torch
@@ -131,7 +144,6 @@ with st.sidebar:
         for i, (q, r) in enumerate(st.session_state.chat_history):
             st.write(f"Q{i+1}: {q}")
             st.write(f"A{i+1}: {r}")
-
 
     # About us
     st.subheader("About Us")
